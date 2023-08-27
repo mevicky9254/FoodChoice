@@ -75,7 +75,7 @@ FoodChoice is a revolutionary recipe recommendation platform that empowers users
 - Integration of TensorFlow for machine learning-driven recommendations.
 
 ## Getting Started
-1. Clone the repository: **`git clone <https://github.com/yourusername/explorenature.git>`**
+1. Clone the repository: **`git clone <https://github.com/mevicky9254/FoodChoice.git>`**
 3. Set up the front-end and back-end environments.
 4. Configure database settings in `application.properties`.
 5. Run the application locally for development.
