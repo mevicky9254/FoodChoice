@@ -3,11 +3,16 @@ package com.foodchoice.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
@@ -17,25 +22,35 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Column(unique = true)
     private String username;
+    
+    @NotNull
+    @JsonProperty(access = Access.WRITE_ONLY)
+    @Column(name = "password")
     private String password;
     private String email;
     private String firstName;
     private String lastName;
+    private String role;
     
-    
+
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<SavedRecipe> savedRecipes = new ArrayList<>();
     
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Review> reviews = new ArrayList<>();
     
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<CommunityForumPost> forumPosts = new ArrayList<>(); 
     
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
-    private List<ForumComment> forumComments = new ArrayList<>(); 
-    
+    private List<ForumComment> forumComments = new ArrayList<>();
+	
    
 }
 

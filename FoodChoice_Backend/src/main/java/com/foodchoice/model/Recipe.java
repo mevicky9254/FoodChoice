@@ -18,8 +18,9 @@ public class Recipe {
     private Long id;
     
     private String title;
+    private String type;
     private String description;
-    private String instructions;
+    private List<String> instructions;
     
     @OneToMany(mappedBy = "recipe")
     private List<Review> reviews = new ArrayList<>();

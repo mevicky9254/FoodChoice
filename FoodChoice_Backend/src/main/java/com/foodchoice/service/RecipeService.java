@@ -3,13 +3,14 @@ package com.foodchoice.service;
 import java.util.List;
 
 import com.foodchoice.dto.RecipeDto;
+import com.foodchoice.exception.RecipeException;
 import com.foodchoice.model.Recipe;
 
 public interface RecipeService {
 	
-	Recipe createRecipe(RecipeDto recipeDto);
-    Recipe getRecipeById(Long id);
-    List<Recipe> getRecipesByCuisine(String cuisine);
-    List<Recipe> getRecipesByIngredients(List<String> ingredientNames);
+	Recipe createRecipe(RecipeDto recipeDto)throws RecipeException;
+    Recipe getRecipeById(Long id)throws RecipeException;
+    List<Recipe> getRecipesByIngredients(List<String> ingredientNames)throws RecipeException;
+	List<Recipe> getRecipesByType(String recipeType);
 
 }

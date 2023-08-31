@@ -2,23 +2,25 @@ package com.foodchoice.dto;
 
 import java.util.List;
 
+import com.foodchoice.model.Ingredient;
+
 public class RecipeDto {
 	
     private String title;
-    private List<String> ingredients;
+    private List<Ingredient> ingredients;
     private List<String> cookingInstructions;
-    private String cuisine;
+   
     
 	public RecipeDto() {
 		super();
 	}
 
-	public RecipeDto(String title, List<String> ingredients, List<String> cookingInstructions, String cuisine) {
+	public RecipeDto(String title, List<Ingredient> ingredients, List<String> cookingInstructions) {
 		super();
 		this.title = title;
 		this.ingredients = ingredients;
 		this.cookingInstructions = cookingInstructions;
-		this.cuisine = cuisine;
+		
 	}
 
 	public String getTitle() {
@@ -29,11 +31,11 @@ public class RecipeDto {
 		this.title = title;
 	}
 
-	public List<String> getIngredients() {
+	public List<Ingredient> getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(List<String> ingredients) {
+	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
 
@@ -45,12 +47,6 @@ public class RecipeDto {
 		this.cookingInstructions = cookingInstructions;
 	}
 
-	public String getCuisine() {
-		return cuisine;
-	}
-
-	public void setCuisine(String cuisine) {
-		this.cuisine = cuisine;
-	}
+	
     
 }
