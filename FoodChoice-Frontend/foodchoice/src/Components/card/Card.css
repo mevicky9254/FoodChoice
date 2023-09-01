@@ -1,0 +1,65 @@
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+  
+  .card-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .card-details {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .title {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .food-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .type {
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .rating {
+    font-size: 16px;
+    color: #f76d57;
+  }
+  
+  .add-to-wishlist {
+    background-color: #f76d57;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-to-wishlist:hover {
+    background-color: #d45143;
+  }
+  

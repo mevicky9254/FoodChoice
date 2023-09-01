@@ -1,0 +1,103 @@
+/* Default styles */
+.signup-container {
+  max-width: 25%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+.signup-container h2{
+
+  color: #029696;
+  margin-bottom: 20px;
+}
+
+
+
+.signup-heading {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.signup-form {
+  text-align: left;
+}
+
+.signup-label {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.signup-input {
+  width: 94%;
+  padding: 7px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.signup-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #303636;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.signup-button:hover {
+  background-color: #000408;
+}
+
+/* Media query for tablets */
+@media (max-width: 768px) {
+  .signup-container {
+    max-width: 300px;
+  }
+
+  .signup-heading {
+    font-size: 24px;
+  }
+
+  .signup-input {
+    font-size: 14px;
+  }
+
+  .signup-button {
+    font-size: 16px;
+  }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 480px) {
+  .signup-container {
+    max-width: 260px;
+    padding: 15px;
+  }
+
+  .signup-heading {
+    font-size: 20px;
+  }
+
+  .signup-input {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .signup-button {
+    font-size: 16px;
+    padding: 8px;
+  }
+}

@@ -1,0 +1,127 @@
+/* Default styles */
+.auth-container {
+  max-width: 25%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+.auth-container h2 {
+  font-size: 28px;
+  color: #029696;
+  margin-bottom: 10px;
+}
+
+.auth-container h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #02336b;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+
+input {
+  width: 94%;
+  padding: 10px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: auto;
+}
+
+.sigin-button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #2a2e31;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sigin-button[type="submit"]:hover {
+  background-color: #00070f;
+}
+
+p {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+p a {
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+/* Media query for tablets */
+@media (max-width: 768px) {
+  .auth-container {
+    max-width: 300px;
+  }
+
+  .auth-container h2 {
+    font-size: 24px;
+  }
+
+  .auth-container h3 {
+    font-size: 20px;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    font-size: 14px;
+  }
+
+  button[type="submit"] {
+    font-size: 16px;
+  }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 480px) {
+  .auth-container {
+    max-width: 260px;
+    padding: 15px;
+  }
+
+  .auth-container h2 {
+    font-size: 20px;
+  }
+
+  .auth-container h3 {
+    font-size: 18px;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  button[type="submit"] {
+    font-size: 16px;
+    padding: 8px;
+  }
+}

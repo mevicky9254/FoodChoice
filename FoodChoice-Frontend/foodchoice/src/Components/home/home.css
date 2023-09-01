@@ -1,0 +1,24 @@
+/* Default styles for larger screens */
+.food-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+  }
+  
+  /* Media query for tablets */
+  @media (max-width: 768px) {
+    .food-container {
+      grid-template-columns: repeat(2, 1fr); 
+    }
+  }
+  
+  /* Media query for mobile devices */
+  @media (max-width: 480px) {
+    .food-container {
+      grid-template-columns: 1fr; 
+    }
+  }
+  

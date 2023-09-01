@@ -1,0 +1,87 @@
+/* Default styles for larger screens */
+.banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #ffffff, #333333);
+    padding: 60px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .bannertext {
+    flex: 1;
+    padding: 20px;
+    transition: background-color 0.5s;
+  }
+  
+  .bannerimage {
+    flex: 1;
+    height: 250px; /* Adjust the image height as needed */
+    background-image: url("https://b.zmtcdn.com/data/pictures/3/18931263/dda0a8d19448adf672c0905f68c1afb2_o2_featured_v2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: filter 0.5s;
+  }
+  
+  .bannertitle {
+    font-size: 48px;
+    margin: 0;
+  }
+  
+  .bannertagline {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .banner:hover .bannertext {
+    background-color: rgba(0, 0, 0, 0.7); /* Darken the background on hover */
+  }
+  
+  .banner:hover .bannerimage {
+    filter: brightness(0.8); /* Darken the image on hover */
+  }
+  
+  /* Media query for tablets */
+  @media (max-width: 768px) {
+    .banner {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .bannertext {
+      padding: 10px;
+    }
+  
+    .bannerimage {
+      height: 150px;
+    }
+  }
+  
+  /* Media query for mobile devices */
+  @media (max-width: 480px) {
+    .banner {
+      padding: 10px;
+      font-size: 20px;
+    }
+  
+    .bannertext {
+      padding: 5px;
+    }
+  
+    .bannerimage {
+      height: 100px;
+    }
+  
+    .bannertitle {
+      font-size: 36px;
+    }
+  
+    .bannertagline {
+      font-size: 14px;
+    }
+  }
+  

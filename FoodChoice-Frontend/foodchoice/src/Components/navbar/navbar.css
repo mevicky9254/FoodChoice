@@ -1,81 +1,255 @@
+
 .navbar {
-    background-color: transparent;
-    position: fixed;
-    width: 100%;
-    padding: 1rem 0;
-    transition: background-color 0.3s ease-in-out;
-    z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  height: 50px;
+}
+
+.left-menu .menubars {
+  color: #fff;
+  font-size: 25px;
+  display: none;
+}
+
+/* Left Menu */
+.left-menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.left-menu li {
+  margin-right: 20px;
+}
+
+.left-menu li:last-child {
+  margin-right: 0;
+}
+
+.left-menu a {
+  text-decoration: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+.menu a {
+  position: relative;
+  text-decoration: none;
+  color: rgb(228, 219, 219);
+  padding: 10px;
+}
+
+.menu a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #da03bdc5;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s ease;
+}
+
+.menu a:hover::before {
+  transform: scaleX(1);
+}
+
+/* Right Menu */
+.right-menu {
+  display: flex;
+  align-items: center;
+}
+
+/* Search Box */
+.searchbox-container {
+  position: relative;
+}
+
+.searchbox {
+  padding: 8px;
+  border: none;
+  border-bottom: 2px solid #fff3f3;
+  outline: none;
+  width: 200px;
+  background-color: transparent;
+  color: #fff;
+  margin-right: 18px;
+}
+
+/* Magnifying Glass Icon */
+.magnifying-glass {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Logo */
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.logo h2 {
+  margin: 0;
+  padding-left: 8px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Attractive Animation on Hover */
+.logo:hover {
+  transition: transform 0.2s ease-in-out;
+}
+
+.logo h2 {
+  animation: colorChange 1s infinite alternate;
+}
+
+@keyframes colorChange {
+  from {
+    color: #f5cc18;
   }
-  
-  .navbar.open {
-    background-color: #292b2c;
+  to {
+    color: #10acb8; 
   }
-  
-  .logo a {
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: white;
+}
+
+
+
+/*for extra small devices */
+@media (max-width: 420.98px) {
+  .left-menu .menubars {
+    display: block;
+    margin-left: -20px;
+    font-size: 18px;
+    position: relative;
   }
-  
   .menu {
     display: none;
-    cursor: pointer;
-    flex-direction: column;
   }
-  
-  .bar {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 4px 0;
-    transition: all 0.3s ease-in-out;
+
+  .logo h2 {
+    font-size: 20px;
+    margin-left: -20px;
   }
-  
-  .nav-links {
+
+  .floating-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color:rgba(248, 248, 248, 0.877);
+    padding: 10px;
+    border-radius: 4px;
     list-style: none;
-    display: flex;
-    align-items: center;
+    height: 180px;
+    margin-top: 0px;
+    margin-left: -10px;
+    width: 130px;
+    z-index: 2; 
   }
-  
-  .nav-links li {
-    margin: 0 1rem;
+  .floating-menu ul li {
+   list-style: none;
+   margin-top: 20px;
+   margin-left: -40px;
+   
   }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: white;
-    transition: color 0.3s ease-in-out;
+  .floating-menu ul li a{
+    color: #9e0000;
+    
   }
-  
-  .nav-links a:hover {
-    color: #ffc107;
+
+  .floating-menu ul li a:hover{
+    background-color: #0a30db85;
   }
+
+  .left-menu li:hover .floating-menu {
+    display: block;
+  }
+
+  .left-menu li:not(:hover) .floating-menu {
+    display: none;
+  }
+
+  .searchbox {
+    width: 150px;
+    margin-right: 8px;
+  }
+}
+
   
-  @media (max-width: 768px) {
+
+
+  @media (min-width: 420.98px) and (max-width: 867.98px) {
+
+    .left-menu .menubars {
+      display: block;
+      margin-left: -20px;
+      font-size: 25px;
+      position: relative;
+    }
     .menu {
-      display: flex;
-    }
-  
-    .nav-links {
       display: none;
-      flex-direction: column;
+    }
+    .logo h2 {
+      font-size: 30px;
+      margin-left: 20px;
+    }
+  
+    .floating-menu {
+      display: none;
       position: absolute;
-      top: 60px;
+      top: 100%;
       left: 0;
-      width: 100%;
-      background-color: #292b2c;
-      text-align: center;
-      z-index: 1;
-      transition: all 0.3s ease-in-out;
+      background-color:rgba(248, 248, 248, 0.877);
+      padding: 10px;
+      border-radius: 4px;
+      list-style: none;
+      height: 180px;
+      margin-top: 0px;
+      margin-left: -10px;
+      width: 130px;
+      z-index: 2; 
+    }
+    .floating-menu ul li {
+     list-style: none;
+     margin-top: 20px;
+     margin-left: -40px;
+     
+    }
+    .floating-menu ul li a{
+      color: #9e0000;
+      
     }
   
-    .nav-links.open {
-      display: flex;
+    .floating-menu ul li a:hover{
+      background-color: #ffffff;
     }
   
-    .nav-links li {
-      margin: 10px 0;
+    .left-menu li:hover .floating-menu {
+      display: block;
     }
+  
+    .left-menu li:not(:hover) .floating-menu {
+      display: none;
+    }
+  
   }
-  
