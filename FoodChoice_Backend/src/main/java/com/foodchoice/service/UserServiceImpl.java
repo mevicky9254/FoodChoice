@@ -37,8 +37,7 @@ public class UserServiceImpl implements UserService  {
 	private RecipeRepository recipeRepo;
 	@Autowired
 	private CommunityForumPostRepository forumPostRepo;
-	@Autowired
-	private ForumCommentRepository forumCommentRepo;
+	
 	
 	
 	
@@ -233,71 +232,6 @@ public class UserServiceImpl implements UserService  {
 
 	
 	
-	@Override
-	public CommunityForumPost createForumPost(String username, CommunityForumPostDto postDto) throws UserException {
-		
-		  User user = uRepo.findByUsername(username);
-		    if (user == null) {
-		        throw new UserException("User not found!");
-		    }
-
-		    CommunityForumPost forumPost = new CommunityForumPost();
-		    forumPost.setTitle(postDto.getTitle());
-		    forumPost.setContent(postDto.getContent());
-		    forumPost.setUser(user);
-
-		    return forumPostRepo.save(forumPost);
-	}
-
-	
-	
-	@Override
-	public CommunityForumPost updateForumPost(String username, Long postId, CommunityForumPostUpdateDto postUpdateDto) throws UnauthorizedUserException, ForumPostNotFoundException, UserException {
-		
-		 User user = uRepo.findByUsername(username);
-		    if (user == null) {
-		        throw new UserException("User not found!");
-		    }
-
-		    Optional<CommunityForumPost> opForumPost = forumPostRepo.findById(postId);
-		    if (opForumPost.isEmpty()) {
-		        throw new ForumPostNotFoundException("Forum post not found with ID: " + postId);
-		    }
-
-		    CommunityForumPost forumPost = opForumPost.get();
-		    if (!forumPost.getUser().equals(user)) {
-		        throw new UnauthorizedUserException("You are not authorized to update this post.");
-		    }
-
-		    forumPost.setTitle(postUpdateDto.getTitle());
-		    forumPost.setContent(postUpdateDto.getContent());
-
-		    return forumPostRepo.save(forumPost);
-	}
-
-	
-
-	@Override
-	public void deleteForumPost(String username, Long postId) throws UserException, ForumPostNotFoundException, UnauthorizedUserException {
-	    User user = uRepo.findByUsername(username);
-	    if (user == null) {
-	        throw new UserException("User not found!");
-	    }
-
-	    Optional<CommunityForumPost> opForumPost = forumPostRepo.findById(postId);
-	    if (opForumPost.isEmpty()) {
-	        throw new ForumPostNotFoundException("Forum post not found with ID: " + postId);
-	    }
-
-	    CommunityForumPost forumPost = opForumPost.get();
-	    if (!forumPost.getUser().equals(user)) {
-	        throw new UnauthorizedUserException("You are not authorized to delete this post.");
-	    }
-
-	    forumPostRepo.delete(forumPost);
-	}
-
-	
 	
 	@Override
 	public List<ForumComment> getPostComments(Long postId) throws ForumPostNotFoundException {
@@ -312,79 +246,6 @@ public class UserServiceImpl implements UserService  {
 
 	    CommunityForumPost forumPost = opForumPost.get();
 	    return forumPost.getComments();
-	}
-
-	
-	
-	@Override
-	public ForumComment leaveComment(String username, Long postId, ForumCommentDto commentDto) throws UserException, ForumPostNotFoundException {
-	    User user = uRepo.findByUsername(username);
-	    if (user == null) {
-	        throw new UserException("User not found!");
-	    }
-
-	    Optional<CommunityForumPost> opForumPost = forumPostRepo.findById(postId);
-	    if (opForumPost.isEmpty()) {
-	        throw new ForumPostNotFoundException("Forum post not found with ID: " + postId);
-	    }
-
-	    CommunityForumPost forumPost = opForumPost.get();
-
-	    ForumComment comment = new ForumComment();
-	    comment.setContent(commentDto.getContent());
-	    comment.setUser(user);
-	    comment.setPost(forumPost);
-
-	    forumPost.getComments().add(comment);
-
-	    forumPostRepo.save(forumPost);
-	    return forumCommentRepo.save(comment);
-	}
-
-	
-	
-	@Override
-	public ForumComment updateComment(String username, Long postId, Long commentId, ForumCommentUpdateDto commentUpdateDto) throws UserException, ForumCommentNotFoundException, UnauthorizedUserException {
-	    User user = uRepo.findByUsername(username);
-	    if (user == null) {
-	        throw new UserException("User not found!");
-	    }
-
-	    Optional<ForumComment> opComment = forumCommentRepo.findById(commentId);
-	    if (opComment.isEmpty()) {
-	        throw new ForumCommentNotFoundException("Forum comment not found with ID: " + commentId);
-	    }
-
-	    ForumComment comment = opComment.get();
-	    if (!comment.getUser().equals(user)) {
-	        throw new UnauthorizedUserException("You are not authorized to update this comment.");
-	    }
-
-	    comment.setContent(commentUpdateDto.getContent());
-
-	    return forumCommentRepo.save(comment);
-	}
-
-	
-	
-	@Override
-	public void deleteComment(String username, Long postId, Long commentId) throws UserException, ForumCommentNotFoundException, UnauthorizedUserException {
-	    User user = uRepo.findByUsername(username);
-	    if (user == null) {
-	        throw new UserException("User not found!");
-	    }
-
-	    Optional<ForumComment> opComment = forumCommentRepo.findById(commentId);
-	    if (opComment.isEmpty()) {
-	        throw new ForumCommentNotFoundException("Forum comment not found with ID: " + commentId);
-	    }
-
-	    ForumComment comment = opComment.get();
-	    if (!comment.getUser().equals(user)) {
-	        throw new UnauthorizedUserException("You are not authorized to delete this comment.");
-	    }
-
-	    forumCommentRepo.delete(comment);
 	}
 
 	

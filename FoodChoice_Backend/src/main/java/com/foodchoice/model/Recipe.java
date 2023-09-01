@@ -19,6 +19,7 @@ public class Recipe {
     
     private String title;
     private String type;
+    private String image;
     private String description;
     private List<String> instructions;
     

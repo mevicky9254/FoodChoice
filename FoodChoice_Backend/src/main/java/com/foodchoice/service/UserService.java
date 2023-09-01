@@ -32,12 +32,6 @@ public interface UserService {
     List<Review> getUserReviews(String username)throws UserException, ReviewException;
     void leaveReview(String username, ReviewDto reviewDto) throws UserException, RecipeException;
     List<CommunityForumPost> getUserForumPosts(String username)throws UserException;
-    CommunityForumPost createForumPost(String username, CommunityForumPostDto postDto)throws UserException;
-    CommunityForumPost updateForumPost(String username, Long postId, CommunityForumPostUpdateDto postUpdateDto) throws UnauthorizedUserException, ForumPostNotFoundException, UserException;
-    void deleteForumPost(String username, Long postId) throws UserException, ForumPostNotFoundException, UnauthorizedUserException;
     List<ForumComment> getPostComments(Long postId) throws ForumPostNotFoundException;
-    ForumComment leaveComment(String username, Long postId, ForumCommentDto commentDto) throws UserException, ForumPostNotFoundException;
-    ForumComment updateComment(String username, Long postId, Long commentId, ForumCommentUpdateDto commentUpdateDto) throws UserException, ForumCommentNotFoundException, UnauthorizedUserException;
-    void deleteComment(String username, Long postId, Long commentId) throws UserException, ForumCommentNotFoundException, UnauthorizedUserException;
-
+   
 }

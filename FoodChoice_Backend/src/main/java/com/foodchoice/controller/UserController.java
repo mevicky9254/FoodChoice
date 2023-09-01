@@ -50,7 +50,7 @@ public class UserController {
     @Autowired
     private CommunityForumService communityForumService;
 
-    @GetMapping("/")
+    @GetMapping("/hello")
     public String getHello() {
     	return "hello";
     }
@@ -169,33 +169,7 @@ public class UserController {
     }
     
    
-    @PutMapping("/{username}/forum-posts/{postId}")
-    public ResponseEntity<CommunityForumPost> updateForumPost(
-        @PathVariable String username,
-        @PathVariable Long postId,
-        @RequestBody CommunityForumPostUpdateDto postUpdateDto
-    ) {
-        try {
-            CommunityForumPost updatedForumPost = userService.updateForumPost(username, postId, postUpdateDto);
-            return new ResponseEntity<>(updatedForumPost, HttpStatus.OK);
-        } catch (UserException | UnauthorizedUserException | ForumPostNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @DeleteMapping("/{username}/forum-posts/{postId}")
-    public ResponseEntity<Void> deleteForumPost(
-        @PathVariable String username,
-        @PathVariable Long postId
-    ) {
-        try {
-            userService.deleteForumPost(username, postId);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (UserException | ForumPostNotFoundException | UnauthorizedUserException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
+   
     @GetMapping("/forum-posts/{postId}/comments")
     public ResponseEntity<List<ForumComment>> getPostComments(@PathVariable Long postId) {
         try {
@@ -206,53 +180,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/forum-posts/{postId}/comments")
-    public ResponseEntity<ForumComment> leaveComment(
-        @PathVariable String username,
-        @PathVariable Long postId,
-        @RequestBody ForumCommentDto commentDto
-    ) {
-        try {
-            ForumComment comment = userService.leaveComment(username, postId, commentDto);
-            return new ResponseEntity<>(comment, HttpStatus.CREATED);
-        } catch (UserException | ForumPostNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-    
-    
-    @PutMapping("/{username}/forum-posts/{postId}/comments/{commentId}")
-    public ResponseEntity<ForumComment> updateComment(
-        @PathVariable String username,
-        @PathVariable Long postId,
-        @PathVariable Long commentId,
-        @RequestBody ForumCommentUpdateDto commentUpdateDto
-    ) {
-        try {
-            ForumComment updatedComment = userService.updateComment(username, postId, commentId, commentUpdateDto);
-            return new ResponseEntity<>(updatedComment, HttpStatus.OK);
-        } catch (UserException | ForumCommentNotFoundException | UnauthorizedUserException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @DeleteMapping("/{username}/forum-posts/{postId}/comments/{commentId}")
-    public ResponseEntity<Void> deleteComment(
-        @PathVariable String username,
-        @PathVariable Long postId,
-        @PathVariable Long commentId
-    ) {
-    	
-        try {
-            userService.deleteComment(username, postId, commentId);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (UserException | ForumCommentNotFoundException | UnauthorizedUserException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
-    
-    
-    
+   
 
     
 

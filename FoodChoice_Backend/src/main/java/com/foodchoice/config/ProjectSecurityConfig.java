@@ -35,13 +35,17 @@ public class ProjectSecurityConfig {
 				.addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
 				.addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
 				.authorizeHttpRequests((requests) -> requests
+						
 						.requestMatchers("/admin/products/**", "/admin/orders/**", "/admin/control/**").hasRole("ADMIN")
 						.requestMatchers("/cart/**", "/users/**", "cart_items/**", "/orders/**", 
 								"/ratings/**")
 						.hasAnyRole("USER", "ADMIN").requestMatchers("/all").hasAnyRole("USER", "ADMIN")
+						
 						.requestMatchers("/auth/signin").authenticated()
-						.requestMatchers("/notices","/products/**", "/","/contact", "/users/**", "/swagger-ui*/**", "/v3/api-docs/**")
-						.permitAll())
+						.requestMatchers("/", "/users/register", "/swagger-ui*/**", "/v3/api-docs/**")
+						.permitAll()
+						)
+				        
 				.formLogin(Customizer.withDefaults()).httpBasic(Customizer.withDefaults());
 		return http.build();
 	}
