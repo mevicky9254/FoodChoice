@@ -12,5 +12,6 @@ public interface RecipeService {
     Recipe getRecipeById(Long id)throws RecipeException;
     List<Recipe> getRecipesByIngredients(List<String> ingredientNames)throws RecipeException;
 	List<Recipe> getRecipesByType(String recipeType);
+    Recipe deleteRecipe(Long id) throws RecipeException;
 
 }

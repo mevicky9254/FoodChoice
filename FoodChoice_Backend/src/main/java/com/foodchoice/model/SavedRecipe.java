@@ -17,7 +17,7 @@ public class SavedRecipe {
     
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Customer user;
     
     @ManyToOne
     @JoinColumn(name = "recipe_id")

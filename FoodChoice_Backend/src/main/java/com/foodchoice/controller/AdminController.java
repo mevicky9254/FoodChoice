@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,12 +21,13 @@ import com.foodchoice.service.RecipeService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
-public class RecipeController {
+@RequestMapping("/admin")
+public class AdminController {
 
-    @Autowired
+	@Autowired
     private RecipeService recipeService;
 
-    @PostMapping("/admin/recipe")
+    @PostMapping("/create/recipe")
     public ResponseEntity<Recipe> createRecipe(@RequestBody RecipeDto recipeDto) {
         try {
             Recipe createdRecipe = recipeService.createRecipe(recipeDto);
@@ -61,11 +63,13 @@ public class RecipeController {
         }
     }
     
-    @DeleteMapping("recipe/delete/{id}")
+    @DeleteMapping("delete/recipe/{id}")
     public ResponseEntity<Recipe> deleteRecipeById(@PathVariable Long id) throws RecipeException{
     	
     	Recipe recipe=recipeService.deleteRecipe(id);
     	
     	return new ResponseEntity<>(recipe, HttpStatus.OK);
     }
+	
+	
 }

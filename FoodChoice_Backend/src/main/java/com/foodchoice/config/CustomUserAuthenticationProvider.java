@@ -14,23 +14,25 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.foodchoice.model.User;
-import com.foodchoice.repository.UserRepository;
+import com.foodchoice.model.Customer;
+import com.foodchoice.repository.CustomerRepository;
+
+
 
 @Component
 public class CustomUserAuthenticationProvider implements AuthenticationProvider {
 
     @Autowired
-    private UserRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public Authentication authenticate(Authentication authentication)throws AuthenticationException {
+    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String pwd = authentication.getCredentials().toString();
-        User customer = customerRepository.findByUsername(username);
+        Customer customer = customerRepository.findByUsername(username);
         if (customer != null) {
             if (passwordEncoder.matches(pwd, customer.getPassword())) {
             	List<GrantedAuthority> auth = new ArrayList<>();
@@ -50,9 +52,5 @@ public class CustomUserAuthenticationProvider implements AuthenticationProvider 
     public boolean supports(Class<?> authentication) {
         return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
     }
-
-
-
-	
 
 }

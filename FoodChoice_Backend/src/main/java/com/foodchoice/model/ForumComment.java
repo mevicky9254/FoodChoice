@@ -20,7 +20,7 @@ public class ForumComment {
    
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;  
+    private Customer user;  
     
     @ManyToOne
     @JoinColumn(name = "post_id")

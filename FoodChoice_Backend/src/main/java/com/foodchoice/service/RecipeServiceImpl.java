@@ -57,5 +57,17 @@ public class RecipeServiceImpl implements RecipeService {
        
     }
     
+    public Recipe deleteRecipe(Long id) throws RecipeException{
+    	
+    	  Optional<Recipe> opRecipe = recipeRepo.findById(id);
+          if (opRecipe.isEmpty()) {
+              throw new RecipeException("Recipe not found with ID: " + id);
+          }
+         
+          recipeRepo.deleteById(id);
+          
+          return opRecipe.get();
+    }
+    
 
 }

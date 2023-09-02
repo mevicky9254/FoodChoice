@@ -6,67 +6,73 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.foodchoice.dto.CommunityForumPostUpdateDto;
-import com.foodchoice.dto.ForumCommentDto;
-import com.foodchoice.dto.ForumCommentUpdateDto;
+import com.foodchoice.config.JwtTokenProvider;
+import com.foodchoice.dto.CustomerUpdateDto;
 import com.foodchoice.dto.ReviewDto;
-import com.foodchoice.dto.UserUpdateDto;
-import com.foodchoice.exception.ForumCommentNotFoundException;
 import com.foodchoice.exception.ForumPostNotFoundException;
 import com.foodchoice.exception.RecipeException;
 import com.foodchoice.exception.ReviewException;
-import com.foodchoice.exception.UnauthorizedUserException;
 import com.foodchoice.exception.UserException;
 import com.foodchoice.model.CommunityForumPost;
+import com.foodchoice.model.Customer;
 import com.foodchoice.model.ForumComment;
+import com.foodchoice.model.Recipe;
 import com.foodchoice.model.Review;
 import com.foodchoice.model.SavedRecipe;
-import com.foodchoice.model.User;
 import com.foodchoice.service.CommunityForumService;
+import com.foodchoice.service.RecipeService;
 import com.foodchoice.service.UserService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 
-public class UserController {
+public class CustomerController {
 
     @Autowired
     private UserService userService;
     
     @Autowired
-    private PasswordEncoder passwordEncoder;
+	 private PasswordEncoder passwordEncoder;
     
     @Autowired
     private CommunityForumService communityForumService;
+    
+    @Autowired
+    private RecipeService recipeService;
+
+    @Autowired
+    private JwtTokenProvider jwtProvider;
 
     @GetMapping("/hello")
-    public String getHello() {
-    	return "hello";
-    }
+	public String testHandler() {
+		return "Welcome to Spring Security";
+	}
+    
     
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user) {
+    public ResponseEntity<Customer> registerUser(@RequestBody Customer user) {
     	
         try {
-        	User eUser=userService.getUserByUsername(user.getUsername());
+        	Customer eUser=userService.getUserByUsername(user.getUsername());
         	
-        	User newUser=null;
+        	Customer newUser=null;
         	
         	if(eUser==null) {
         		
         		user.setPassword(passwordEncoder.encode(user.getPassword()));
         		user.setRole("ROLE_USER");
+        		user.setUsername(user.getEmail());
         		newUser=userService.createUser(user);
         		
         	}
@@ -78,27 +84,31 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{username}")
-    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
+
+    
+
+    @GetMapping("/getUser/{username}")
+    public ResponseEntity<Customer> getUserByUsername(@PathVariable String username) {
         try {
-            User user = userService.getUserByUsername(username);
+        	
+            Customer user = userService.getUserByUsername(username);
             return ResponseEntity.ok(user);
         } catch (UserException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
-    @PutMapping("/{username}")
-    public ResponseEntity<User> updateUserProfile(@PathVariable String username, @RequestBody UserUpdateDto userUpdateDto) {
+    @PutMapping("updateUser/{username}")
+    public ResponseEntity<Customer> updateUserProfile(@PathVariable String username, @RequestBody CustomerUpdateDto userUpdateDto) {
         try {
-            User updatedUser = userService.updateUserProfile(username, userUpdateDto);
+            Customer updatedUser = userService.updateUserProfile(username, userUpdateDto);
             return ResponseEntity.ok(updatedUser);
         } catch (UserException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
-    @DeleteMapping("/{username}")
+    @DeleteMapping("delete/{username}")
     public ResponseEntity<Void> deleteUser(@PathVariable String username) {
         try {
             userService.deleteUser(username);
@@ -179,6 +189,33 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    
+    @GetMapping("recipe/{id}")
+    public ResponseEntity<Recipe> getRecipeById(@PathVariable Long id) {
+        try {
+            Recipe recipe = recipeService.getRecipeById(id);
+            return new ResponseEntity<>(recipe, HttpStatus.OK);
+        } catch (RecipeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("recipe/by-type/{recipeType}")
+    public ResponseEntity<List<Recipe>> getRecipesByType(@PathVariable String recipeType) {
+        List<Recipe> recipes = recipeService.getRecipesByType(recipeType);
+        return new ResponseEntity<>(recipes, HttpStatus.OK);
+    }
+
+    @GetMapping("recipe/by-ingredients")
+    public ResponseEntity<List<Recipe>> getRecipesByIngredients(@RequestParam List<String> ingredientNames) {
+        try {
+            List<Recipe> recipes = recipeService.getRecipesByIngredients(ingredientNames);
+            return new ResponseEntity<>(recipes, HttpStatus.OK);
+        } catch (RecipeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
 
    
 

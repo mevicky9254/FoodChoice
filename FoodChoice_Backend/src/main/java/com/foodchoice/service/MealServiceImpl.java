@@ -11,21 +11,21 @@ import org.springframework.stereotype.Service;
 import com.foodchoice.exception.UserException;
 import com.foodchoice.model.Recipe;
 import com.foodchoice.model.SavedRecipe;
-import com.foodchoice.model.User;
-import com.foodchoice.repository.UserRepository;
+import com.foodchoice.model.Customer;
+import com.foodchoice.repository.CustomerRepository;
 
 @Service
 public class MealServiceImpl implements MealService {
 
     @Autowired
-    private UserRepository userRepository;
+    private CustomerRepository userRepository;
 
     @Autowired
     private RecipeService recipeService;
 
     @Override
     public List<Recipe> getMealSuggestions(String username) throws UserException {
-        User user = userRepository.findByUsername(username);
+        Customer user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UserException("User not found!");
         }

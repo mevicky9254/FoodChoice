@@ -19,13 +19,12 @@ import lombok.Data;
 
 @Entity
 @Data
-public class User {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(unique = true)
-    @NotNull
+   @JsonIgnore
     private String username;
     
     @NotNull

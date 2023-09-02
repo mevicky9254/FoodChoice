@@ -11,7 +11,7 @@ import com.foodchoice.dto.CommunityForumPostUpdateDto;
 import com.foodchoice.dto.ForumCommentDto;
 import com.foodchoice.dto.ForumCommentUpdateDto;
 import com.foodchoice.dto.ReviewDto;
-import com.foodchoice.dto.UserUpdateDto;
+import com.foodchoice.dto.CustomerUpdateDto;
 import com.foodchoice.exception.ForumCommentNotFoundException;
 import com.foodchoice.exception.ForumPostNotFoundException;
 import com.foodchoice.exception.RecipeException;
@@ -22,17 +22,17 @@ import com.foodchoice.model.ForumComment;
 import com.foodchoice.model.Recipe;
 import com.foodchoice.model.Review;
 import com.foodchoice.model.SavedRecipe;
-import com.foodchoice.model.User;
+import com.foodchoice.model.Customer;
 import com.foodchoice.repository.CommunityForumPostRepository;
 import com.foodchoice.repository.ForumCommentRepository;
 import com.foodchoice.repository.RecipeRepository;
-import com.foodchoice.repository.UserRepository;
+import com.foodchoice.repository.CustomerRepository;
 
 @Service
 public class UserServiceImpl implements UserService  {
 
 	@Autowired
-	private UserRepository uRepo;
+	private CustomerRepository cRepo;
 	@Autowired
 	private RecipeRepository recipeRepo;
 	@Autowired
@@ -42,13 +42,13 @@ public class UserServiceImpl implements UserService  {
 	
 	
 	@Override
-	public User createUser(User user)throws UserException {
+	public Customer createUser(Customer user)throws UserException {
 		
-		Optional<User> opUser=uRepo.findById(user.getId());
+		Optional<Customer> opUser=cRepo.findById(user.getId());
 		if(!opUser.isEmpty()) {
 			throw new UserException("User already exists !");
 		}else {
-			uRepo.save(user);
+			cRepo.save(user);
 		}
 		
 		return user;
@@ -58,9 +58,9 @@ public class UserServiceImpl implements UserService  {
 	
 	
 	@Override
-	public User getUserByUsername(String username)throws UserException {
+	public Customer getUserByUsername(String username)throws UserException {
 		
-		User user =uRepo.findByUsername(username);
+		Customer user =cRepo.findByUsername(username);
 		
 		return user;
 	}
@@ -68,9 +68,9 @@ public class UserServiceImpl implements UserService  {
 	
 	
 	@Override
-	public User updateUserProfile(String username, UserUpdateDto userUpdateDto)throws UserException {
+	public Customer updateUserProfile(String username, CustomerUpdateDto userUpdateDto)throws UserException {
 		
-		User user =uRepo.findByUsername(username);
+		Customer user =cRepo.findByUsername(username);
 		
 		if(user==null) {
 			throw new UserException("Invalid UserName!");
@@ -90,13 +90,13 @@ public class UserServiceImpl implements UserService  {
 	@Override
 	public void deleteUser(String username) throws UserException {
 		
-     User user =uRepo.findByUsername(username);
+     Customer user =cRepo.findByUsername(username);
 		
 		if(user==null) {
 			throw new UserException("Invalid UserName!");
 		}
 		
-	 uRepo.deleteById(user.getId());
+	 cRepo.deleteById(user.getId());
 		
 		
 	}
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService  {
 	@Override
 	public List<SavedRecipe> getSavedRecipes(String username) throws UserException,RecipeException {
 		
-      User user =uRepo.findByUsername(username);
+      Customer user =cRepo.findByUsername(username);
 		
 		if(user==null) {
 			throw new UserException("Invalid UserName!");
@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService  {
 	@Override
 	public void saveRecipe(String username, Long recipeId) throws UserException, RecipeException {
 		
-		 User user = uRepo.findByUsername(username);
+		 Customer user = cRepo.findByUsername(username);
 	        if (user == null) {
 	            throw new UserException("User not found!");
 	        }
@@ -145,7 +145,7 @@ public class UserServiceImpl implements UserService  {
 	        savedRecipe.setUser(user);
 	        user.getSavedRecipes().add(savedRecipe);
 	        
-	        uRepo.save(user);	 
+	        cRepo.save(user);	 
 			 
 	}
 	
@@ -154,7 +154,7 @@ public class UserServiceImpl implements UserService  {
 	@Override
 	public void unsaveRecipe(String username, Long recipeId) throws UserException, RecipeException {
 		
-		User user = uRepo.findByUsername(username);
+		Customer user = cRepo.findByUsername(username);
 	    if (user == null) {
 	        throw new UserException("User not found!");
 	    }
@@ -170,7 +170,7 @@ public class UserServiceImpl implements UserService  {
 	    List<SavedRecipe> savedRecipes = user.getSavedRecipes();
 	    savedRecipes.removeIf(savedRecipe -> savedRecipe.getRecipe().getId().equals(recipeId));
 
-	    uRepo.save(user);
+	    cRepo.save(user);
 		
 	}
 	
@@ -178,7 +178,7 @@ public class UserServiceImpl implements UserService  {
 
 	@Override
 	public List<Review> getUserReviews(String username) throws UserException {
-		User user = uRepo.findByUsername(username);
+		Customer user = cRepo.findByUsername(username);
 	    if (user == null) {
 	        throw new UserException("User not found!");
 	    }
@@ -191,7 +191,7 @@ public class UserServiceImpl implements UserService  {
 	
 	@Override
 	public void leaveReview(String username, ReviewDto reviewDto) throws UserException, RecipeException {
-		 User user = uRepo.findByUsername(username);
+		 Customer user = cRepo.findByUsername(username);
 		    if (user == null) {
 		        throw new UserException("User not found!");
 		    }
@@ -212,7 +212,7 @@ public class UserServiceImpl implements UserService  {
 		    recipe.getReviews().add(review);
 		    user.getReviews().add(review);
 
-		    uRepo.save(user);
+		    cRepo.save(user);
 		    recipeRepo.save(recipe);
 		
 	}
@@ -222,7 +222,7 @@ public class UserServiceImpl implements UserService  {
 	@Override
 	public List<CommunityForumPost> getUserForumPosts(String username) throws UserException {
 		
-		 User user = uRepo.findByUsername(username);
+		 Customer user = cRepo.findByUsername(username);
 		    if (user == null) {
 		        throw new UserException("User not found!");
 		    }

@@ -1,6 +1,6 @@
 package com.foodchoice.dto;
 
-public class UserUpdateDto {
+public class CustomerUpdateDto {
 	
 	 private String firstName;
 	 private String lastName;
@@ -9,13 +9,13 @@ public class UserUpdateDto {
 	 
 	 
 	 
-	public UserUpdateDto() {
+	public CustomerUpdateDto() {
 		super();
 	}
 
 
 
-	public UserUpdateDto(String firstName, String lastName, String email, String password) {
+	public CustomerUpdateDto(String firstName, String lastName, String email, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;

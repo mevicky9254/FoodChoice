@@ -21,7 +21,7 @@ public class Review {
     
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Customer user;
     
     private int rating;
     private String comment;

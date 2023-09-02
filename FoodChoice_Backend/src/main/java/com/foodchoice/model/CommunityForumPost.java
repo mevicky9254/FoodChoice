@@ -26,7 +26,7 @@ public class CommunityForumPost {
    
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;  // User who created the post
+    private Customer user;  // User who created the post
     
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ForumComment> comments = new ArrayList<>();  

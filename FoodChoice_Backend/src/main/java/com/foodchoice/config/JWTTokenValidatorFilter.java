@@ -28,6 +28,7 @@ public class JWTTokenValidatorFilter  extends OncePerRequestFilter {
         String jwt = request.getHeader(SecurityConstants.JWT_HEADER);
         if (null != jwt) {
             try {
+            	jwt=jwt.substring(7);
                 SecretKey key = Keys.hmacShaKeyFor(
                         SecurityConstants.JWT_KEY.getBytes(StandardCharsets.UTF_8));
 

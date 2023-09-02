@@ -7,7 +7,7 @@ import com.foodchoice.dto.CommunityForumPostUpdateDto;
 import com.foodchoice.dto.ForumCommentDto;
 import com.foodchoice.dto.ForumCommentUpdateDto;
 import com.foodchoice.dto.ReviewDto;
-import com.foodchoice.dto.UserUpdateDto;
+import com.foodchoice.dto.CustomerUpdateDto;
 import com.foodchoice.exception.ForumCommentNotFoundException;
 import com.foodchoice.exception.ForumPostNotFoundException;
 import com.foodchoice.exception.RecipeException;
@@ -18,13 +18,13 @@ import com.foodchoice.model.CommunityForumPost;
 import com.foodchoice.model.ForumComment;
 import com.foodchoice.model.Review;
 import com.foodchoice.model.SavedRecipe;
-import com.foodchoice.model.User;
+import com.foodchoice.model.Customer;
 
 public interface UserService {
 	
-	User createUser(User user)throws UserException;
-    User getUserByUsername(String username)throws UserException;
-    User updateUserProfile(String username, UserUpdateDto userUpdateDto)throws UserException;
+	Customer createUser(Customer user)throws UserException;
+    Customer getUserByUsername(String username)throws UserException;
+    Customer updateUserProfile(String username, CustomerUpdateDto userUpdateDto)throws UserException;
     void deleteUser(String username)throws UserException;
     List<SavedRecipe> getSavedRecipes(String username)throws UserException, RecipeException;
     void saveRecipe(String username, Long recipeId)throws UserException, RecipeException;

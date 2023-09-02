@@ -14,15 +14,15 @@ import com.foodchoice.exception.ForumException;
 import com.foodchoice.exception.UserException;
 import com.foodchoice.model.CommunityForumPost;
 import com.foodchoice.model.ForumComment;
-import com.foodchoice.model.User;
+import com.foodchoice.model.Customer;
 import com.foodchoice.repository.CommunityForumPostRepository;
 import com.foodchoice.repository.ForumCommentRepository;
-import com.foodchoice.repository.UserRepository;
+import com.foodchoice.repository.CustomerRepository;
 @Service
 public class CommunityForumServiceImpl implements CommunityForumService {
 	
 	@Autowired
-    private UserRepository userRepository;
+    private CustomerRepository userRepository;
 
     @Autowired
     private CommunityForumPostRepository forumPostRepository;
@@ -34,7 +34,7 @@ public class CommunityForumServiceImpl implements CommunityForumService {
     @Override
     public CommunityForumPost createPost(String username, CommunityForumPostDto postDto)
             throws UserException {
-        User user = userRepository.findByUsername(username);
+        Customer user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UserException("User not found!");
         }
@@ -66,7 +66,7 @@ public class CommunityForumServiceImpl implements CommunityForumService {
     @Override
     public CommunityForumPost updatePost(String username, Long postId, CommunityForumPostUpdateDto postUpdateDto)
             throws UserException, ForumException {
-        User user = userRepository.findByUsername(username);
+        Customer user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UserException("User not found!");
         }
@@ -88,7 +88,7 @@ public class CommunityForumServiceImpl implements CommunityForumService {
 
     @Override
     public void deletePost(String username, Long postId) throws UserException, ForumException {
-        User user = userRepository.findByUsername(username);
+        Customer user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UserException("User not found!");
         }
@@ -120,7 +120,7 @@ public class CommunityForumServiceImpl implements CommunityForumService {
     public ForumComment leaveComment(String username, Long postId, ForumCommentDto commentDto)
             throws UserException, ForumException {
     	
-    	 User user = userRepository.findByUsername(username);
+    	 Customer user = userRepository.findByUsername(username);
          if (user == null) {
              throw new UserException("User not found!");
          }
@@ -148,7 +148,7 @@ public class CommunityForumServiceImpl implements CommunityForumService {
                                       ForumCommentUpdateDto commentUpdateDto)
             throws UserException, ForumException {
         
-    	User user = userRepository.findByUsername(username);
+    	Customer user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UserException("User not found!");
         }
@@ -173,7 +173,7 @@ public class CommunityForumServiceImpl implements CommunityForumService {
     public void deleteComment(String username, Long postId, Long commentId)
             throws UserException, ForumException {
        
-    	User user = userRepository.findByUsername(username);
+    	Customer user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UserException("User not found!");
         }
