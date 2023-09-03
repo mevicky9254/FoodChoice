@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 
 const SignUp = () => {
@@ -7,9 +8,48 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignUp = (e) => {
+  const navigate = useNavigate();
+
+  const handleSignUp = async(e) => {
     e.preventDefault();
-    // Implement your sign-up logic here
+     let id=0;
+     let requestBody={
+      id,
+      firstName,
+      lastName,
+      email,
+      password
+
+     }
+
+     console.log(requestBody)
+
+     try {
+      const response = await fetch('http://localhost:8080/all/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json', 
+        },
+        body: JSON.stringify(requestBody), 
+      });
+
+      if (response.ok) {
+        console.log('Signup successful');
+        navigate('/signin'); 
+      } else {
+        
+        console.error('Signup failed');
+        alert('Signup failed. Please try again.'); 
+      }
+    } catch (error) {
+      
+      console.error('Error:', error);
+      alert('An error occurred. Please try again later.'); 
+    }
+
+
+
+
   };
 
   return (
