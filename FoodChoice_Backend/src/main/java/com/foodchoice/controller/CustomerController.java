@@ -42,8 +42,6 @@ public class CustomerController {
     @Autowired
     private UserService userService;
     
-    @Autowired
-	 private PasswordEncoder passwordEncoder;
     
     @Autowired
     private CommunityForumService communityForumService;
@@ -53,39 +51,7 @@ public class CustomerController {
 
     @Autowired
     private JwtTokenProvider jwtProvider;
-
-    @GetMapping("/hello")
-	public String testHandler() {
-		return "Welcome to Spring Security";
-	}
-    
-    
-    @PostMapping("/register")
-    public ResponseEntity<Customer> registerUser(@RequestBody Customer user) {
-    	
-        try {
-        	Customer eUser=userService.getUserByUsername(user.getUsername());
-        	
-        	Customer newUser=null;
-        	
-        	if(eUser==null) {
-        		
-        		user.setPassword(passwordEncoder.encode(user.getPassword()));
-        		user.setRole("ROLE_USER");
-        		user.setUsername(user.getEmail());
-        		newUser=userService.createUser(user);
-        		
-        	}
-        	
-        	return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
-           
-        } catch (UserException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-    }
-
-
-    
+   
 
     @GetMapping("/getUser/{username}")
     public ResponseEntity<Customer> getUserByUsername(@PathVariable String username) {

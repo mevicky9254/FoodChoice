@@ -24,20 +24,21 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-   @JsonIgnore
+    @NotNull
+    private String firstName;
+    @NotNull
+    private String lastName;
+    @Email
+    private String email;
+    @JsonIgnore
     private String username;
-    
     @NotNull
     @JsonProperty(access = Access.WRITE_ONLY)
     @Column(name = "password")
     @NotNull
     private String password;
-    @Email
-    private String email;
-    @NotNull
-    private String firstName;
-    @NotNull
-    private String lastName;
+   
+   
     @JsonIgnore
     private String role;
     
