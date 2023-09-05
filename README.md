@@ -40,15 +40,16 @@ FoodChoice is a revolutionary recipe recommendation platform that empowers users
 
 ## API Endpoints
 - User Authentication
-  - POST /api/auth/signup
-  - POST /api/auth/login
+  - POST /all/register
+  - POST /auth/signin
 
 - User Profile
-  - GET /api/users/{username}
-  - PUT /api/users/{username}
-  - GET /api/users/{username}/saved-recipes
-  - POST /api/users/{username}/saved-recipes
-  - DELETE /api/users/{username}/saved-recipes/{recipeId}
+  - GET /user/getUser/{username}
+  - PUT /user/{username}
+  - GET /user/{username}/saved-recipes
+  - POST /user/{username}/saved-recipes
+  - DELETE /users/{username}/saved-recipes/{recipeId}
+  - DELETE /user/{username}
 
 - Recipe
   - GET /api/recipes/{recipeId}
