@@ -81,6 +81,7 @@ public class UserServiceImpl implements UserService  {
 		user.setLastName(userUpdateDto.getLastName());
 		user.setEmail(userUpdateDto.getEmail());
 		user.setPassword(userUpdateDto.getPassword());
+		user.setImage(userUpdateDto.getImage());
 		
 		return user;
 	}
@@ -91,6 +92,7 @@ public class UserServiceImpl implements UserService  {
 	public void deleteUser(String username) throws UserException {
 		
      Customer user =cRepo.findByUsername(username);
+     System.out.println("user id"+user.getEmail());
 		
 		if(user==null) {
 			throw new UserException("Invalid UserName!");

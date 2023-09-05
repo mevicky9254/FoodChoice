@@ -74,7 +74,7 @@ public class CustomerController {
         }
     }
 
-    @DeleteMapping("delete/{username}")
+    @DeleteMapping("/delete/{username}")
     public ResponseEntity<Void> deleteUser(@PathVariable String username) {
         try {
             userService.deleteUser(username);

@@ -37,7 +37,7 @@ public class ProjectSecurityConfig {
 						.requestMatchers("/admin/recipe/**", "/admin**", "/admin/recipe").hasRole("ADMIN")
 						.requestMatchers("/user/**").hasRole("USER")
 						.requestMatchers("auth/signin").authenticated()
-						.requestMatchers( "/all/hello", "/all/register", "/swagger-ui*/**", "/v3/api-docs/**")
+						.requestMatchers( "/all/hello","/chat", "/all/register", "/swagger-ui*/**", "/v3/api-docs/**")
 						.permitAll())
 				.formLogin(Customizer.withDefaults()).httpBasic(Customizer.withDefaults());
 		return http.build();

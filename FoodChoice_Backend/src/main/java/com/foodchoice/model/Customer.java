@@ -37,6 +37,8 @@ public class Customer {
     @Column(name = "password")
     @NotNull
     private String password;
+    
+    private String image;
    
    
     @JsonIgnore
