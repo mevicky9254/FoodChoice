@@ -57,7 +57,7 @@ const SignIn = () => {
         };
       
 
-        const userResponse = await fetch("http://localhost:8080/user/getUser/vikash@gmail.com",requestOptions )
+        const userResponse = await fetch(`http://localhost:8080/user/getUser/${email}`,requestOptions )
 
         if (userResponse.ok) {
           const user = await userResponse.json();
@@ -78,6 +78,7 @@ const SignIn = () => {
           throw new Error('Failed to fetch user details');
         }
       } else {
+        alert("Invalid credentials")
         throw new Error('Failed to fetch user details');
       }
     } catch (error) {

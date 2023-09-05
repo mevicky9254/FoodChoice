@@ -7,18 +7,21 @@ const SignUp = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [imageURL, setImageURL] = useState('');
 
   const navigate = useNavigate();
 
   const handleSignUp = async(e) => {
     e.preventDefault();
      let id=0;
+     console.log(imageURL);
      let requestBody={
       id,
       firstName,
       lastName,
       email,
-      password
+      password,
+      imageURL
 
      }
 
@@ -97,6 +100,15 @@ const SignUp = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="signup-input"
+          />
+        </div>
+        <div className="signup-form-group">
+          <label className="signup-label">Image Url:</label>
+          <input
+            placeholder="Upload Image url "
+            value={imageURL}
+            onChange={(e) => setImageURL(e.target.value)}
             className="signup-input"
           />
         </div>
