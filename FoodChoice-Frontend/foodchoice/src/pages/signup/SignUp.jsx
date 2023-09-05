@@ -50,9 +50,6 @@ const SignUp = () => {
       alert('An error occurred. Please try again later.'); 
     }
 
-
-
-
   };
 
   return (
