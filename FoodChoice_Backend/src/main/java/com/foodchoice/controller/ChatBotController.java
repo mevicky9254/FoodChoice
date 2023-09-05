@@ -12,7 +12,6 @@ import com.foodchoice.chatgpt.config.ChatGptRequest;
 import com.foodchoice.chatgpt.config.ChatGptResponse;
 
 @RestController
-
 public class ChatBotController {
 	
 	
