@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,24 +18,32 @@ import com.foodchoice.dto.RecipeDto;
 import com.foodchoice.exception.RecipeException;
 import com.foodchoice.model.Recipe;
 import com.foodchoice.service.RecipeService;
-
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.validation.Valid;
 
 @RestController
+@RequestMapping("/recipe")
 public class RecipeController {
 
     @Autowired
     private RecipeService recipeService;
 
-    @PostMapping("/admin/recipe")
+    @PostMapping("/create-recipe")
     public ResponseEntity<Recipe> createRecipe(@RequestBody RecipeDto recipeDto) {
+    	
+    	System.out.println(recipeDto);
+    	System.out.println("recipeDto");
+    	
         try {
+        	System.out.println(recipeDto.toString());
             Recipe createdRecipe = recipeService.createRecipe(recipeDto);
             return new ResponseEntity<>(createdRecipe, HttpStatus.CREATED);
         } catch (RecipeException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    	
     }
+    
+   
 
     @GetMapping("recipe/{id}")
     public ResponseEntity<Recipe> getRecipeById(@PathVariable Long id) {

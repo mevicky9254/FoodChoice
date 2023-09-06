@@ -12,21 +12,16 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Ingredient {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String name;
-    
-    @JsonIgnore
-    private String type;
-    
-    @JsonIgnore
+public class Instruction {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	
+	private String instruction;
+	
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
-    
-   
-}
 
+}

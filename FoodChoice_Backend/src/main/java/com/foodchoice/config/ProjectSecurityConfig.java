@@ -36,6 +36,7 @@ public class ProjectSecurityConfig {
 				.authorizeHttpRequests((requests) -> requests
 						.requestMatchers("/admin/recipe/**", "/admin**", "/admin/recipe").hasRole("ADMIN")
 						.requestMatchers("/user/**").hasRole("USER")
+						.requestMatchers("/recipe/**").hasRole("USER")
 						.requestMatchers("auth/signin").authenticated()
 						.requestMatchers( "/all/hello","/chat", "/all/register", "/swagger-ui*/**", "/v3/api-docs/**")
 						.permitAll())
