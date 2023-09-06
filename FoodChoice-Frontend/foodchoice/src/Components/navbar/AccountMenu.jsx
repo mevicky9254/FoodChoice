@@ -139,7 +139,7 @@ const AccountMenu=()=> {
         </MenuItem>
        </Link> 
 
-      <Link to="/forum" style={{ textDecoration: 'none' , color:"black"}}>
+      <Link to="/account" style={{ textDecoration: 'none' , color:"black"}}>
         <MenuItem onClick={handleClose}>
           <Avatar />My account 
         </MenuItem>

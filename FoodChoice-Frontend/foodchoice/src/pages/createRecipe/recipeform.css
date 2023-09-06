@@ -1,0 +1,79 @@
+/* recipeform.css */
+
+  
+.recipe-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white; 
+    color: black; 
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 30px;
+  }
+  
+  .recipe-form-container h2 {
+    text-align: center;
+    color: #FFA500; 
+  }
+  
+  .recipe-form-container label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .recipe-form-container input[type="text"],
+  .recipe-form-container select,
+  .recipe-form-container textarea {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #FFA500;
+    border-radius: 5px;
+    background-color: white;
+    color: black; 
+  }
+  
+  .recipe-form-container button {
+    background-color: #FFA500;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .recipe-form-container button:hover {
+    background-color: #FF6347; 
+  }
+  
+  
+  .recipe-form-container .ingredient-instruction {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .recipe-form-container .ingredient-instruction input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+  }
+  
+  .recipe-form-container button[type="button"] {
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+  }
+  
+  .recipe-form-container button[type="button"]:hover {
+    background-color: #555;
+    
+  }
+  

@@ -64,14 +64,12 @@ useEffect(() => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/recipes">Recipes</Link>
-          </li>
-          <li>
-            <Link to="/forum">Forum</Link>
-          </li>
-          <li>
             <Link to="/profile">Profile</Link>
           </li>
+          <li>
+            <Link to="/recipes">Recipes</Link>
+          </li>
+          
         </ul>
       </div>
     </li>
@@ -83,12 +81,14 @@ useEffect(() => {
         <li className='menu'>
           <Link to="/">Home</Link>
         </li>
+
+        <li className='menu'>
+          <Link to="/profile">Profile</Link>
+        </li>
         <li className='menu'>
           <Link to="/recipes">Recipes</Link>
         </li>
-        <li className='menu'>
-          <Link to="/forum">Forum</Link>
-        </li>
+       
       </ul>
       
       <div className="right-menu" >

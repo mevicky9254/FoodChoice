@@ -8,6 +8,9 @@ import { SignIn } from './pages/signin/SignIn';
 import { SignUp } from './pages/signup/SignUp';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Footer } from './Components/footer/Footer';
+import { Account } from './pages/acoount/Account';
+import { RecipeForm } from './pages/createRecipe/RecipeForm';
+
 
 function App() {
   return (
@@ -21,6 +24,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/signin" element={<SignIn/>} />
           <Route path="/signup" element={<SignUp/>} />
+          <Route path="/account" element={<Account/>}/>
+          <Route path="/create-recipe" element={<RecipeForm/>}/>
         </Routes>
       </div>
       <Footer/>
