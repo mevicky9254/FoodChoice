@@ -8,6 +8,7 @@ FoodChoice is a revolutionary recipe recommendation platform that empowers users
 - [Features](#features)
 - [API Endpoints](#api-endpoints)
 - [Achievements](#achievements)
+- [Highlights](#highlights)
 - [Getting Started](#getting-started)
 - [Contributing](#contributing)
 
@@ -16,8 +17,8 @@ FoodChoice is a revolutionary recipe recommendation platform that empowers users
 - Front-End: React.js
 - Back-End: Spring Boot (Java)
 - Database: MySQL
-- Machine Learning: TensorFlow (for recipe recommendations)
-- Deployment:
+- Generative AI
+- Deployment: Vercel (Frontend)
 
 ## Project Goals
 - Provide users with personalized recipe recommendations using machine learning algorithms.
@@ -29,14 +30,10 @@ FoodChoice is a revolutionary recipe recommendation platform that empowers users
 - Personalized Recipe Recommendations
 - Recipe Discovery & Collection
 - Community Forum for Culinary Discussions
-- Ingredient Substitutions
 - User Reviews & Ratings
 - Culinary Profiles
 - Recipe Sharing
 - AI-Powered Meal Suggestions
-- Interactive Meal Planner
-- Seasonal Ingredient Highlights
-- Global Recipe Exchange
 
 ## API Endpoints
 - User Authentication
@@ -74,6 +71,17 @@ FoodChoice is a revolutionary recipe recommendation platform that empowers users
 - Active community engagement through the community forum.
 - Efficient database management using Spring Data JPA and MySQL.
 - Integration of TensorFlow for machine learning-driven recommendations.
+
+## Highlights
+
+### Home Page
+![Screenshot (103)](https://github.com/mevicky9254/FoodChoice/assets/112768362/bee88bb1-7a0c-44a4-b0b0-5d1ecc1a5ab8)
+
+### SignUp Page
+![Screenshot (98)](https://github.com/mevicky9254/FoodChoice/assets/112768362/b71c667c-417e-486d-9556-0a3a70fece7a)
+
+### SignIn Page
+![Screenshot (96)](https://github.com/mevicky9254/FoodChoice/assets/112768362/35336788-f82c-4bc3-b3ec-9f726dbb221b)
 
 ## Getting Started
 1. Clone the repository: **`git clone <https://github.com/mevicky9254/FoodChoice.git>`**
