@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class OpenApiConfig {
 	
-	private static final String key = "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";
+	private static final String key = "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";
 	
 	@Bean
 	public RestTemplate restTemplate() {

@@ -5,13 +5,21 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.foodchoice.config.JwtTokenProvider;
+import com.foodchoice.config.SecurityConstants;
 import com.foodchoice.dto.RecipeDto;
 import com.foodchoice.exception.RecipeException;
+import com.foodchoice.model.Customer;
 import com.foodchoice.model.Ingredient;
 import com.foodchoice.model.Instruction;
 import com.foodchoice.model.Recipe;
+import com.foodchoice.repository.CustomerRepository;
 import com.foodchoice.repository.RecipeRepository;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -21,7 +29,10 @@ public class RecipeServiceImpl implements RecipeService {
     @Autowired
     private RecipeRepository recipeRepo;
 
+    @Autowired
+    private JwtTokenProvider tokenProvider;
     
+    private CustomerRepository cRepo;
    
     	@Override
     	public Recipe createRecipe(RecipeDto recipeDto) throws RecipeException {
@@ -53,6 +64,16 @@ public class RecipeServiceImpl implements RecipeService {
     	    
     	    recipe.setIngredients(ingredients);
     	    recipe.setInstructions(instructions);
+    	    
+//    	    HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+//            String jwtToken = request.getHeader(SecurityConstants.JWT_HEADER);
+//            
+//            String username = tokenProvider.getEmailFromJwtToken(jwtToken);
+//    	  
+//    	    Customer customer=cRepo.findByUsername(username);
+//    	    System.out.println(customer.toString());
+//    	    customer.getCreatedRecipes().add(recipe);
+//    	    recipe.setCustomer(customer);
     	    
     	    return recipeRepo.save(recipe);
     	}

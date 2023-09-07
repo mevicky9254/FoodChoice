@@ -44,6 +44,9 @@ public class Customer {
     @JsonIgnore
     private String role;
     
+    @OneToMany(mappedBy="customer")
+    private List<Recipe> createdRecipes=new ArrayList<>();
+    
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
