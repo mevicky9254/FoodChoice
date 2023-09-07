@@ -81,7 +81,16 @@ FoodChoice is a revolutionary recipe recommendation platform that empowers users
 ![Screenshot (98)](https://github.com/mevicky9254/FoodChoice/assets/112768362/b71c667c-417e-486d-9556-0a3a70fece7a)
 
 ### SignIn Page
-![Screenshot (96)](https://github.com/mevicky9254/FoodChoice/assets/112768362/35336788-f82c-4bc3-b3ec-9f726dbb221b)
+![Screenshot (96)](https://github.com/mevicky9254/FoodChoice/assets/112768362/e4d22bbc-0421-4258-8c26-a767eb73a5b4)
+
+### ChatBot
+![Screenshot (99)](https://github.com/mevicky9254/FoodChoice/assets/112768362/a1546ccf-9147-4159-a400-a98663e51200)
+
+### Recipe-Creation Form
+![Screenshot (101)](https://github.com/mevicky9254/FoodChoice/assets/112768362/c72e1c33-d6b5-4c66-83e3-478669d20c54)
+
+### Account Details
+![Screenshot (102)](https://github.com/mevicky9254/FoodChoice/assets/112768362/f834a5aa-43f1-4ea4-95fa-0cb8805decd7)
 
 ## Getting Started
 1. Clone the repository: **`git clone <https://github.com/mevicky9254/FoodChoice.git>`**
