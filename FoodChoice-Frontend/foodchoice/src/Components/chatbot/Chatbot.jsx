@@ -66,7 +66,7 @@ const Chatbot = () => {
 
   return (
     <div className="chat-container">
-      <div className="chat-header">MamVik GPT-3</div>
+      <div className="chat-header">FoodChoice Assistant</div>
       <div className="chat-messages" id="chat-messages">
         {messages.map((message, index) => (
             <div key={index} className={`message ${message.type === 'user' ? 'user' : 'assistant'}`}>
