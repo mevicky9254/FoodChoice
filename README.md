@@ -71,11 +71,11 @@ FoodChoice is a revolutionary recipe recommendation platform that empowers users
   - DELETE /user/{username}
 
 - Recipe
-  - GET /api/recipes/{recipeId}
-  - GET /api/recipes
-  - POST /api/recipes
-  - PUT /api/recipes/{recipeId}
-  - DELETE /api/recipes/{recipeId}
+  - GET /recipe/recipes/{recipeId}
+  - GET /recipe/recipes
+  - POST /recipe/create-recipe
+  - PUT /recipe/{recipeId}
+  - DELETE /recipe/recipeId/{recipeId}
   
 - Community Forum
   - GET /api/forum/posts
