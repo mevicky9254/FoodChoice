@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.foodchoice.config.JwtTokenProvider;
 import com.foodchoice.dto.RecipeDto;
 import com.foodchoice.exception.RecipeException;
 import com.foodchoice.model.Recipe;
 import com.foodchoice.service.RecipeService;
-import jakarta.validation.Valid;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/recipe")
@@ -26,24 +28,43 @@ public class RecipeController {
 
     @Autowired
     private RecipeService recipeService;
+    
+    @Autowired
+	private JwtTokenProvider jwtProvider;
 
     @PostMapping("/create-recipe")
-    public ResponseEntity<Recipe> createRecipe(@RequestBody RecipeDto recipeDto) {
+	public ResponseEntity<Recipe> createRecipe(@RequestBody RecipeDto recipeDto, HttpServletRequest request) {
+	    try {
+	        String jwtToken = request.getHeader("Authorization");
+	      
+	        if (jwtToken != null && jwtToken.startsWith("Bearer ")) {
+	            jwtToken = jwtToken.substring(7); 
+	            
+	            String userName = jwtProvider.getEmailFromJwtToken(jwtToken);
+	            
+	            System.out.println("User name for jwt" +userName);
+	            
+	            Recipe createdRecipe = recipeService.createRecipe(recipeDto, userName);
+	            return new ResponseEntity<>(createdRecipe, HttpStatus.CREATED);
+	        } else {
+	        	
+	            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+	        }
+	    } catch (RecipeException e) {
+	        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	    }
+	}
+   
+    
+    
+    @GetMapping("/recipes/{userName}")
+    public ResponseEntity<List<Recipe>> getRecipesByUserName(@PathVariable String userName) throws RecipeException{
     	
-    	System.out.println(recipeDto);
-    	System.out.println("recipeDto");
+    	List<Recipe> recipeList=recipeService.getRecipesByUserName(userName);
     	
-        try {
-        	System.out.println(recipeDto.toString());
-            Recipe createdRecipe = recipeService.createRecipe(recipeDto);
-            return new ResponseEntity<>(createdRecipe, HttpStatus.CREATED);
-        } catch (RecipeException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    	
+    	return new ResponseEntity<>(recipeList, HttpStatus.OK);
     }
     
-   
 
     @GetMapping("recipe/{id}")
     public ResponseEntity<Recipe> getRecipeById(@PathVariable Long id) {
@@ -54,6 +75,8 @@ public class RecipeController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    
+    
 
     @GetMapping("recipe/by-type/{recipeType}")
     public ResponseEntity<List<Recipe>> getRecipesByType(@PathVariable String recipeType) {
@@ -71,6 +94,8 @@ public class RecipeController {
         }
     }
     
+    
+    
     @DeleteMapping("recipe/delete/{id}")
     public ResponseEntity<Recipe> deleteRecipeById(@PathVariable Long id) throws RecipeException{
     	
@@ -78,4 +103,6 @@ public class RecipeController {
     	
     	return new ResponseEntity<>(recipe, HttpStatus.OK);
     }
+    
+   
 }

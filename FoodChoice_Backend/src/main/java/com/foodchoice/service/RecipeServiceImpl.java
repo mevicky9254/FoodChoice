@@ -32,10 +32,11 @@ public class RecipeServiceImpl implements RecipeService {
     @Autowired
     private JwtTokenProvider tokenProvider;
     
+    @Autowired
     private CustomerRepository cRepo;
    
     	@Override
-    	public Recipe createRecipe(RecipeDto recipeDto) throws RecipeException {
+    	public Recipe createRecipe(RecipeDto recipeDto,String userName) throws RecipeException {
     	    Recipe recipe = new Recipe();
     	    recipe.setTitle(recipeDto.getTitle());
     	    recipe.setType(recipeDto.getType());
@@ -45,42 +46,47 @@ public class RecipeServiceImpl implements RecipeService {
     	    List<String> ingredientNames = recipeDto.getIngredients();
     	    List<String> instructionSteps = recipeDto.getInstructions();
     	   
-    	    List<Ingredient> ingredients = new ArrayList<>();
-    	    for (String ingredientName : ingredientNames) {
-    	        Ingredient ingredient = new Ingredient();
-    	        ingredient.setName(ingredientName);
-    	        ingredient.setRecipe(recipe);
-    	        ingredients.add(ingredient);
-    	    }
-    	    
-    	  
-    	    List<Instruction> instructions = new ArrayList<>();
-    	    for (String instructionStep : instructionSteps) {
-    	        Instruction instruction = new Instruction();
-    	        instruction.setInstruction(instructionStep);
-    	        instruction.setRecipe(recipe);
-    	        instructions.add(instruction);
-    	    }
-    	    
-    	    recipe.setIngredients(ingredients);
-    	    recipe.setInstructions(instructions);
-    	    
-//    	    HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-//            String jwtToken = request.getHeader(SecurityConstants.JWT_HEADER);
-//            
-//            String username = tokenProvider.getEmailFromJwtToken(jwtToken);
+//    	    List<Ingredient> ingredients = new ArrayList<>();
+//    	    for (String ingredientName : ingredientNames) {
+//    	        Ingredient ingredient = new Ingredient();
+//    	        ingredient.setName(ingredientName);
+//    	        ingredient.setRecipe(recipe);
+//    	        ingredients.add(ingredient);
+//    	    }
+//    	    
 //    	  
-//    	    Customer customer=cRepo.findByUsername(username);
-//    	    System.out.println(customer.toString());
-//    	    customer.getCreatedRecipes().add(recipe);
-//    	    recipe.setCustomer(customer);
+//    	    List<Instruction> instructions = new ArrayList<>();
+//    	    for (String instructionStep : instructionSteps) {
+//    	        Instruction instruction = new Instruction();
+//    	        instruction.setInstruction(instructionStep);
+//    	        instruction.setRecipe(recipe);
+//    	        instructions.add(instruction);
+//    	    }
+    	    
+    	    recipe.setIngredients(ingredientNames);
+    	    recipe.setInstructions(instructionSteps);
+   	  
+    	    Customer customer=cRepo.findByUsername(userName);
+       	    System.out.println(customer.toString());
+    	    customer.getCreatedRecipes().add(recipe);
+    	    recipe.setCustomer(customer);
     	    
     	    return recipeRepo.save(recipe);
     	}
 
     
     
+    	@Override
+        public List<Recipe> getRecipesByUserName(String userName) throws RecipeException {
 
+    		 Customer customer=cRepo.findByUsername(userName);
+    		 
+    		
+            return customer.getCreatedRecipes();
+        }
+
+    	
+    	
     @Override
     public Recipe getRecipeById(Long id) throws RecipeException {
         Optional<Recipe> opRecipe = recipeRepo.findById(id);

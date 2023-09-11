@@ -8,10 +8,11 @@ import com.foodchoice.model.Recipe;
 
 public interface RecipeService {
 	
-	Recipe createRecipe(RecipeDto recipeDto)throws RecipeException;
+	Recipe createRecipe(RecipeDto recipeDto,String userName)throws RecipeException;
     Recipe getRecipeById(Long id)throws RecipeException;
     List<Recipe> getRecipesByIngredients(List<String> ingredientNames)throws RecipeException;
 	List<Recipe> getRecipesByType(String recipeType);
     Recipe deleteRecipe(Long id) throws RecipeException;
+	List<Recipe> getRecipesByUserName(String userName) throws RecipeException;
 
 }

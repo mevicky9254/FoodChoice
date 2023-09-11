@@ -63,6 +63,14 @@ public class Customer {
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<ForumComment> forumComments = new ArrayList<>();
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", username=" + username + ", password=" + password + ", image=" + image + ", role=" + role + "]";
+	}
+    
+    
 	
    
 }

@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.foodchoice.config.JwtTokenProvider;
 import com.foodchoice.dto.RecipeDto;
 import com.foodchoice.exception.RecipeException;
 import com.foodchoice.model.Recipe;
 import com.foodchoice.service.RecipeService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/admin")
@@ -26,16 +28,31 @@ public class AdminController {
 
 	@Autowired
     private RecipeService recipeService;
+	
+	@Autowired
+	private JwtTokenProvider jwtProvider;
 
-    @PostMapping("/create/recipe")
-    public ResponseEntity<Recipe> createRecipe(@RequestBody RecipeDto recipeDto) {
-        try {
-            Recipe createdRecipe = recipeService.createRecipe(recipeDto);
-            return new ResponseEntity<>(createdRecipe, HttpStatus.CREATED);
-        } catch (RecipeException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
+	@PostMapping("/create/recipe")
+	public ResponseEntity<Recipe> createRecipe(@RequestBody RecipeDto recipeDto, HttpServletRequest request) {
+	    try {
+	        String jwtToken = request.getHeader("Authorization");
+	        
+	        if (jwtToken != null && jwtToken.startsWith("Bearer ")) {
+	            jwtToken = jwtToken.substring(7); 
+	            
+	            String userName = jwtProvider.getEmailFromJwtToken(jwtToken);
+	            
+	            Recipe createdRecipe = recipeService.createRecipe(recipeDto, userName);
+	            return new ResponseEntity<>(createdRecipe, HttpStatus.CREATED);
+	        } else {
+	        	
+	            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+	        }
+	    } catch (RecipeException e) {
+	        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	    }
+	}
+
 
     @GetMapping("recipe/{id}")
     public ResponseEntity<Recipe> getRecipeById(@PathVariable Long id) {

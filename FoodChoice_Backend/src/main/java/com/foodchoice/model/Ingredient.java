@@ -1,5 +1,6 @@
 package com.foodchoice.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -19,14 +20,7 @@ public class Ingredient {
     
     private String name;
     
-    @JsonIgnore
     private String type;
-    
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "recipe_id")
-    private Recipe recipe;
-    
    
 }
 

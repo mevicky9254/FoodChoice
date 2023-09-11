@@ -24,7 +24,7 @@ import com.foodchoice.model.Review;
 import com.foodchoice.model.SavedRecipe;
 import com.foodchoice.model.Customer;
 import com.foodchoice.repository.CommunityForumPostRepository;
-import com.foodchoice.repository.ForumCommentRepository;
+
 import com.foodchoice.repository.RecipeRepository;
 import com.foodchoice.repository.CustomerRepository;
 
