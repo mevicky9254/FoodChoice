@@ -15,9 +15,7 @@ const Card = ({ prop }) => {
           <p className="rating">Rating {prop.rating}</p>
         </div>
       </div>
-      <div>
-        <button className="add-to-wishlist">Add To Wishlist</button>
-      </div>
+      
     </div>
   );
 };

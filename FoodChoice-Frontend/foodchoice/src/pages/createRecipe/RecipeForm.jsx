@@ -15,7 +15,9 @@ const RecipeForm = () => {
     const [userData, setUserData] = useState({});
     const [username, setUsername] = useState('');
     const [token, setToken] = useState('');
+    
     const navigate = useNavigate();
+
   
     useEffect(() => {
       const storedUserDetails = localStorage.getItem('userDetails');
@@ -26,9 +28,10 @@ const RecipeForm = () => {
         setUserData(parsedUserDetails);
         setUsername(parsedUserDetails.email);
         setToken(storedToken);
+        
+
       }
     }, []);
-
 
 
 
@@ -78,7 +81,6 @@ const RecipeForm = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-
     try {
         const headers = {
           'Authorization': `Bearer ${token}`,
@@ -93,6 +95,8 @@ const RecipeForm = () => {
         };
   
         let response = await fetch("http://localhost:8080/recipe/create-recipe", requestOptions);
+
+        console.log(response)
   
         if (response.ok) {
           alert('Recipe added successfully');

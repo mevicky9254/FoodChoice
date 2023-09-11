@@ -7,19 +7,27 @@
     align-items: center;
     margin: 10px;
     max-width: 300px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   }
   
   .card-image {
-    width: 100%;
-    height: auto;
-    text-align: center;
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
   }
   
   .card-image img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card-image:hover {
+    transform: scale(1.05); 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
   }
   
   .card-details {
@@ -36,6 +44,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 60px;
   }
   
   .type {
@@ -44,12 +53,12 @@
   }
   
   .rating {
-    font-size: 16px;
+    font-size: 20px;
     color: #f76d57;
   }
   
   .add-to-wishlist {
-    background-color: #f76d57;
+    background-color: #9c2614;
     color: #fff;
     border: none;
     padding: 8px 16px;
