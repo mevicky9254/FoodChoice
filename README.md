@@ -1,6 +1,8 @@
 # FoodChoice - Personalized Recipe Recommendation Platform
 
 FoodChoice is a revolutionary recipe recommendation platform that empowers users to discover new recipes, tailor recommendations to their tastes, and engage with a vibrant food-loving community.
+## Deployed Link:
+<a href=""></a>
 
 ## Table of Contents
 - [Tech Stacks](#tech-stacks)
